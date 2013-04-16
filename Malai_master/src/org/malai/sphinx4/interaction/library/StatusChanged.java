@@ -25,11 +25,11 @@ public class StatusChanged extends Sphinx4Interaction{
 	}
 	
 	protected void initStateMachine() {
-		final TerminalState heard = new TerminalState("heard"); 
+		final TerminalState changed = new TerminalState("changed"); 
 
-		addState(heard);
+		addState(changed);
 
-		new StatusChangedTransition(initState, heard) {
+		new StatusChangedTransition(initState, changed) {
 			public void action() {
 				super.action();
 				StatusChanged.this.state = this.state;

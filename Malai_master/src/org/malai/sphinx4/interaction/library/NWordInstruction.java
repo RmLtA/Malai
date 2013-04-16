@@ -39,7 +39,7 @@ public class NWordInstruction extends Sphinx4Interaction{
 		if (args.length > 0) {
             cm = new ConfigurationManager(args[0]);
         } else {
-            cm = new ConfigurationManager(HelloNGram.class.getResource("hellongram.config.xml"));
+            cm = new ConfigurationManager(NWordInstruction.class.getResource("hellongram.config.xml"));
         }
 
         // allocate the recognizer
