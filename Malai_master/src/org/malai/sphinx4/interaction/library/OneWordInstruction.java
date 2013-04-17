@@ -1,6 +1,6 @@
 package org.malai.sphinx4.interaction.library;
 
-import java.awt.Point;
+
 import java.net.URL;
 
 
@@ -9,6 +9,8 @@ import org.malai.interaction.MoveTransition;
 import org.malai.interaction.PressureTransition;
 import org.malai.interaction.ReleaseTransition;
 import org.malai.interaction.TerminalState;
+import org.malai.sphinx4.ex.draw.model.SphinxRect;
+import org.malai.sphinx4.ex.draw.ui.GUIHelper;
 import org.malai.sphinx4.interaction.Sphinx4Interaction;
 import org.malai.stateMachine.SourceableState;
 import org.malai.stateMachine.TargetableState;
@@ -19,37 +21,29 @@ import edu.cmu.sphinx.recognizer.Recognizer.State;
 import edu.cmu.sphinx.result.Result;
 import edu.cmu.sphinx.util.props.ConfigurationManager;
 
+import java.awt.*;
+
+
 public class OneWordInstruction extends Sphinx4Interaction{
 	protected State state;
-	/** The starting point of the interaction. */
-	protected Point startPt;
-	/** The ending point of the interaction. */
-	protected Point endPt;
 	/** The button of the device used to performed the interaction. */
 	protected int button;
 
 
 	public OneWordInstruction() {
 		super();
+		System.out.println("ratédéb");
 		initStateMachine();
+		System.out.println("ratéfin");
 	}
 
 
 	public void reinit() {
 		super.reinit();
 		state = null;
-		startPt 	= null;
-		endPt 		= null;
 		button		= -1;
 	}
 	
-	public Point getStartPt() {
-		return startPt;
-	}
-
-	public Point getEndPt() {
-		return endPt;
-	}
 	
 	public int getButton() {
 		return button;
@@ -65,19 +59,15 @@ public class OneWordInstruction extends Sphinx4Interaction{
 		addState(pressed);
 		addState(ordered);
 		addState(released);
-		
+	
 		new PressureTransition(initState, pressed) {
 			@Override
 			public void action() {
 				super.action();
-
 				setLastHIDUsed(this.hid);
-				OneWordInstruction.this.startPt 	 = new Point(this.x, this.y);
-				OneWordInstruction.this.endPt	 	 = new Point(this.x, this.y);
-				OneWordInstruction.this.button  	 = this.button;
+				OneWordInstruction.this.button = this.button;
 			}
 		};
-
 
 		new Move4OneWordInstruction(pressed, ordered);
 		new Release4OneWordInstruction(ordered, released);
@@ -85,11 +75,10 @@ public class OneWordInstruction extends Sphinx4Interaction{
 	
 	
 	public class Move4OneWordInstruction extends MoveTransition {
-		private Point endPt;
 		
-
 		public Move4OneWordInstruction(final SourceableState inputState, final TargetableState outputState) {
 			super(inputState, outputState);
+			action();
 		}
 
 		public void action() {
@@ -115,7 +104,7 @@ public class OneWordInstruction extends Sphinx4Interaction{
 			     System.exit(1);
 			 }
 			
-			 System.out.println("Say: ( Square )");
+			 System.out.println("Say: ( Start )");
 			 
 			 while (true) {
 			 System.out.println("Start speaking. Press Ctrl-C to quit.\n");
@@ -125,14 +114,21 @@ public class OneWordInstruction extends Sphinx4Interaction{
 			 if (result != null) {
 			 String resultText = result.getBestFinalResultNoFiller();
 			 System.out.println("You said: " + resultText + '\n');
-			 // On appelle ici la méthode correspondante à l'ordre reçue
 			 
-			 
+			 /**On appelle la méthode correspondante à la méthode reçue*/
+			 if (resultText.compareTo("Hello rita")!=0){
+				 SphinxRect jc = new SphinxRect();
+				 jc.setBackground(Color.WHITE);
+			     jc.setPreferredSize(new Dimension(800,900));
+			     GUIHelper.showOnFrame(jc,"test");
+				 
+			 } else {
+				 System.out.println("répéter");
+			 	 }
+
 			 } else {
 			         System.out.println("I can't hear what you said.\n");
 			 		}
-			 
-			Move4OneWordInstruction.this.endPt.setLocation(x, y);
 		}
 		}
 	
