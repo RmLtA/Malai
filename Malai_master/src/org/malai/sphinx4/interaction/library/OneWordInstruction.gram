@@ -6,4 +6,4 @@
 
 grammar OneWordInstruction;
 
-public <greet> = ( Square );
+public <greet> = ( Start );

@@ -11,6 +11,7 @@ import org.malai.interaction.ReleaseTransition;
 import org.malai.interaction.TerminalState;
 import org.malai.sphinx4.ex.draw.model.SphinxRect;
 import org.malai.sphinx4.ex.draw.ui.GUIHelper;
+import org.malai.sphinx4.ex.draw.ui.SphinxEditorFrame;
 import org.malai.sphinx4.interaction.Sphinx4Interaction;
 import org.malai.stateMachine.SourceableState;
 import org.malai.stateMachine.TargetableState;
@@ -32,9 +33,9 @@ public class OneWordInstruction extends Sphinx4Interaction{
 
 	public OneWordInstruction() {
 		super();
-		System.out.println("ratédéb");
+		System.out.println("Loading...");
 		initStateMachine();
-		System.out.println("ratéfin");
+		
 	}
 
 
