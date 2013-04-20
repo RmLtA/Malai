@@ -1,4 +1,4 @@
-package org.malai.sphinx4.ex.draw.model;
+package org.malai.sphinx4.model;
 
 import java.awt.*;
 import javax.swing.*;
