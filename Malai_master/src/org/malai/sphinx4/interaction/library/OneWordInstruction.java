@@ -11,8 +11,7 @@ import org.malai.interaction.ReleaseTransition;
 import org.malai.interaction.TerminalState;
 import org.malai.sphinx4.ex.draw.model.SphinxRect;
 import org.malai.sphinx4.ex.draw.ui.GUIHelper;
-import org.malai.sphinx4.ex.draw.ui.SphinxEditorFrame;
-import org.malai.sphinx4.interaction.Sphinx4Interaction;
+import org.malai.sphinx4.interaction.SpeechInteraction;
 import org.malai.stateMachine.SourceableState;
 import org.malai.stateMachine.TargetableState;
 
@@ -25,7 +24,7 @@ import edu.cmu.sphinx.util.props.ConfigurationManager;
 import java.awt.*;
 
 
-public class OneWordInstruction extends Sphinx4Interaction{
+public class OneWordInstruction extends SpeechInteraction{
 	protected State state;
 	/** The button of the device used to performed the interaction. */
 	protected int button;
@@ -54,11 +53,11 @@ public class OneWordInstruction extends Sphinx4Interaction{
 
 	protected void initStateMachine() {
 		final IntermediaryState pressed = new IntermediaryState("pressed");
-		final IntermediaryState ordered = new IntermediaryState("ordered");
+		final IntermediaryState listened = new IntermediaryState("listened");
 		final TerminalState released = new TerminalState("realesed");
 		
 		addState(pressed);
-		addState(ordered);
+		addState(listened);
 		addState(released);
 	
 		new PressureTransition(initState, pressed) {
@@ -70,8 +69,8 @@ public class OneWordInstruction extends Sphinx4Interaction{
 			}
 		};
 
-		new Move4OneWordInstruction(pressed, ordered);
-		new Release4OneWordInstruction(ordered, released);
+		new Move4OneWordInstruction(pressed, listened);
+		new Release4OneWordInstruction(listened, released);
 	}
 	
 	

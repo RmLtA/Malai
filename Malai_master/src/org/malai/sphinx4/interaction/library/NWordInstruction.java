@@ -1,8 +1,8 @@
 package org.malai.sphinx4.interaction.library;
 
 import org.malai.interaction.TerminalState;
-import org.malai.sphinx4.interaction.Sphinx4Interaction;
-import org.malai.sphinx4.interaction.StatusChangedTransition;
+import org.malai.sphinx4.interaction.SpeechInteraction;
+import org.malai.sphinx4.interaction.SpeechTransition;
 
 import edu.cmu.sphinx.frontend.util.Microphone;
 import edu.cmu.sphinx.recognizer.Recognizer;
@@ -10,7 +10,7 @@ import edu.cmu.sphinx.recognizer.Recognizer.State;
 import edu.cmu.sphinx.result.Result;
 import edu.cmu.sphinx.util.props.ConfigurationManager;
 
-public class NWordInstruction extends Sphinx4Interaction{
+public class NWordInstruction extends SpeechInteraction{
 	protected State state;
 
 	public NWordInstruction() {
@@ -34,7 +34,7 @@ public class NWordInstruction extends Sphinx4Interaction{
 		addState(heard);
 
 		@SuppressWarnings("unused")
-		StatusChangedTransition s =new StatusChangedTransition(initState, heard); 
+		SpeechTransition s =new SpeechTransition(initState, heard); 
 /**********************************************************************/		
 		if (args.length > 0) {
             cm = new ConfigurationManager(args[0]);

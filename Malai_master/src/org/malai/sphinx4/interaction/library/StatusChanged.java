@@ -2,14 +2,14 @@ package org.malai.sphinx4.interaction.library;
 
 
 import org.malai.interaction.TerminalState;
-import org.malai.sphinx4.interaction.Sphinx4Interaction;
-import org.malai.sphinx4.interaction.StatusChangedTransition;
+import org.malai.sphinx4.interaction.SpeechInteraction;
+import org.malai.sphinx4.interaction.SpeechTransition;
 
 import edu.cmu.sphinx.recognizer.Recognizer.State;
 
 
 
-public class StatusChanged extends Sphinx4Interaction{
+public class StatusChanged extends SpeechInteraction{
 	
 	protected State state;
 	
@@ -29,10 +29,10 @@ public class StatusChanged extends Sphinx4Interaction{
 
 		addState(changed);
 
-		new StatusChangedTransition(initState, changed) {
+		new SpeechTransition(initState, changed) {
 			public void action() {
 				super.action();
-				StatusChanged.this.state = this.state;
+				StatusChanged.this.state = this.status;
 			}
 		};
 	}
