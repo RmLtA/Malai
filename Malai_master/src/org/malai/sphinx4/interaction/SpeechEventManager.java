@@ -1,18 +1,27 @@
 package org.malai.sphinx4.interaction;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 
 import org.malai.interaction.BasicEventManager;
 import org.malai.interaction.EventHandler;
+import org.malai.sphinx4.ex.draw.model.SphinxRect;
+import org.malai.sphinx4.ex.draw.ui.GUIHelper;
+import org.malai.sphinx4.interaction.library.OneWordInstruction;
 
 
 import edu.cmu.sphinx.decoder.Decoder;
+import edu.cmu.sphinx.frontend.util.Microphone;
 import edu.cmu.sphinx.instrumentation.Monitor;
 import edu.cmu.sphinx.recognizer.Recognizer;
 import edu.cmu.sphinx.recognizer.Recognizer.State;
 import edu.cmu.sphinx.recognizer.StateListener;
+import edu.cmu.sphinx.result.Result;
+import edu.cmu.sphinx.util.props.ConfigurationManager;
 import edu.cmu.sphinx.util.props.PropertyException;
 import edu.cmu.sphinx.util.props.PropertySheet;
 
@@ -21,6 +30,7 @@ public class SpeechEventManager extends BasicEventManager<StateListener> impleme
 	private static final String PROP_DECODER = null;
 	private static final String PROP_MONITORS = null;
 	private List<SpeechEventHandler> speechHandlers;
+	private static String resultText;
 	
 	public SpeechEventManager() {
 		super();
@@ -77,19 +87,69 @@ public class SpeechEventManager extends BasicEventManager<StateListener> impleme
 
 	
 	@Override
-	public void statusChanged(State arg0) {
-		if(speechHandlers != null) {
-			for(final SpeechEventHandler handler : speechHandlers)
-				handler.onSpeechStateChanged(arg0);
-		}
+	public void statusChanged(State arg0) {	
 		
 	}
+	
+	public void oneWordSpeechEvent(String word){
+		if(speechHandlers != null) {
+			/**Identification du fichier de configuration*/
+			URL url = OneWordInstruction.class.getResource("helloworld.config.xml");
+			
+			/**Chargement de la configuration*/
+			ConfigurationManager cm = new ConfigurationManager(url);
+			
+			/**Création de l'objet de reconnaissance*/
+			Recognizer recognizer = (Recognizer) cm.lookup("recognizer");
+			recognizer.allocate();
+			
+			/**Création de l'objet microphone*/
+			 Microphone microphone = (Microphone) cm.lookup("microphone");
+			 
+			 /**On vérifie si le microphone est prêt à enregistrer*/
+			 if (!microphone.startRecording()) {
+			     System.out.println("Cannot start microphone.");
+			     recognizer.deallocate();
+			     System.exit(1);
+			 }
+			
+			 System.out.println("Say: ( Start )");
+			 
+			 while (true) {
+			 System.out.println("Start speaking. Press Ctrl-C to quit.\n");
+
+			 Result result = recognizer.recognize();
+
+			 if (result != null) {
+			 resultText = result.getBestFinalResultNoFiller();
+			 System.out.println("You said: " + resultText + '\n');
+			 
+			 /**On appelle la méthode correspondante à la méthode reçue*/
+			 if (resultText.compareTo("Hello rita")!=0){
+				 SphinxRect jc = new SphinxRect();
+				 jc.setBackground(Color.WHITE);
+			     jc.setPreferredSize(new Dimension(800,900));
+			     GUIHelper.showOnFrame(jc,"test");
+				 
+			 } else {
+				 System.out.println("répéter");
+			 	 }
+
+			 } else {
+			         System.out.println("I can't hear what you said.\n");
+			 		}
+			 }
+			 }
 		
-
-
+			for(final SpeechEventHandler handler : speechHandlers)
+			 handler.onSpeech(resultText);
+		}
+		
+		
+	}
 	
 	
-	
 
 
-}
+
+
