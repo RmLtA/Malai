@@ -1,7 +1,5 @@
 package org.malai.sphinx4.interaction;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +7,6 @@ import java.util.List;
 
 import org.malai.interaction.BasicEventManager;
 import org.malai.interaction.EventHandler;
-import org.malai.sphinx4.ex.draw.model.SphinxRect;
-import org.malai.sphinx4.ex.draw.ui.GUIHelper;
 import org.malai.sphinx4.interaction.library.OneWordInstruction;
 
 
@@ -126,10 +122,10 @@ public class SpeechEventManager extends BasicEventManager<StateListener> impleme
 			 
 			 /**On appelle la méthode correspondante à la méthode reçue*/
 			 if (resultText.compareTo("Hello rita")!=0){
-				 SphinxRect jc = new SphinxRect();
+				 /*SphinxRect jc = new SphinxRect();
 				 jc.setBackground(Color.WHITE);
 			     jc.setPreferredSize(new Dimension(800,900));
-			     GUIHelper.showOnFrame(jc,"test");
+			     GUIHelper.showOnFrame(jc,"test");*/
 				 
 			 } else {
 				 System.out.println("répéter");
