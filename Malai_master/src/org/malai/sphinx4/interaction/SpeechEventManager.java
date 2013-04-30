@@ -121,11 +121,8 @@ public class SpeechEventManager extends BasicEventManager<StateListener> impleme
 			 System.out.println("You said: " + resultText + '\n');
 			 
 			 /**On appelle la méthode correspondante à la méthode reçue*/
-			 if (resultText.compareTo("Hello rita")!=0){
-				 /*SphinxRect jc = new SphinxRect();
-				 jc.setBackground(Color.WHITE);
-			     jc.setPreferredSize(new Dimension(800,900));
-			     GUIHelper.showOnFrame(jc,"test");*/
+			 if (resultText.compareTo("Start")!=0){
+				 System.out.println("Start"); 
 				 
 			 } else {
 				 System.out.println("répéter");
