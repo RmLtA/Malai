@@ -1,7 +1,15 @@
 package org.malai.ex.speech.ui;
 
-import org.malai.instrument.Instrument;
-import org.malai.swing.ui.UI;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 
 /*
  * The main GUI of the application.
@@ -9,24 +17,43 @@ import org.malai.swing.ui.UI;
  * of the Malai class UI that represents a GUI.
  * A Malai UI is a JFrame. 
  */
-public class SpeechEditorFrame extends UI {
+public class SpeechEditorFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
+	/*private static OneWordInstruction o;*/
+	 private JPanel container = new JPanel();
+	 private JLabel label = new JLabel("Speech Recognition");
 	
 	public SpeechEditorFrame() {
 		super();
-		/* Setting the name of the application. */
-		setName("A simple editor");
+		this.setTitle("Speech editor");
+		this.setLocation(100, 100);
+		this.setSize(800, 600);
+	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    this.setLocationRelativeTo(null);
+	    container.setBackground(Color.white);
+	    container.setLayout(new BorderLayout());
+	    JPanel top = new JPanel();
 
+	    top.add(label);
+
+	    container.add(top, BorderLayout.NORTH);
+	    this.setContentPane(container);
+	    this.setVisible(true);              
+		
+		/*setO(new OneWordInstruction());*/
+		
 	}
+
+	/*public static OneWordInstruction getO() {
+		return o;
+	}
+
+	public static void setO(OneWordInstruction o) {
+		SpeechEditorFrame.o = o;
+	}*/
+
 	
-	@Override
-	public void initialisePresentations() {
 
-	}
 
-	@Override
-	public Instrument[] getInstruments() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 }
