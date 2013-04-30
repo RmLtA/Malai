@@ -1,19 +1,25 @@
 package org.malai.sphinx4.interaction.library;
 
 
+import java.awt.Graphics;
+
 import org.malai.interaction.TerminalState;
+import org.malai.sphinx4.interaction.SpeechEventManager;
 import org.malai.sphinx4.interaction.SpeechInteraction;
 import org.malai.sphinx4.interaction.SpeechTransition;
 
 
 public class OneWordInstruction extends SpeechInteraction{
 	protected String word;
+	protected Graphics g;
 
 
 	public OneWordInstruction() {
 		super();
-		System.out.println("Loading...");
+		g.drawString("Loading...", 10, 20);
 		initStateMachine();
+		SpeechEventManager e = new SpeechEventManager();
+	    e.oneWordSpeechEvent();
 		
 	}
 
@@ -33,7 +39,9 @@ public class OneWordInstruction extends SpeechInteraction{
 			@Override
 			public void action() {
 				super.action();
-				OneWordInstruction.this.word = this.word;
+			    /*SpeechEventManager e = new SpeechEventManager();
+			    e.oneWordSpeechEvent();*/
+				/*OneWordInstruction.this.word = this.word;*/
 			}
 		};
 	}

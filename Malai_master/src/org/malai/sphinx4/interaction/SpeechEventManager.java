@@ -3,7 +3,7 @@ package org.malai.sphinx4.interaction;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.awt.Graphics; 
 
 import org.malai.interaction.BasicEventManager;
 import org.malai.interaction.EventHandler;
@@ -27,6 +27,7 @@ public class SpeechEventManager extends BasicEventManager<StateListener> impleme
 	private static final String PROP_MONITORS = null;
 	private List<SpeechEventHandler> speechHandlers;
 	private static String resultText;
+	private Graphics g;
 	
 	public SpeechEventManager() {
 		super();
@@ -87,7 +88,7 @@ public class SpeechEventManager extends BasicEventManager<StateListener> impleme
 		
 	}
 	
-	public void oneWordSpeechEvent(String word){
+	public void oneWordSpeechEvent(){
 		if(speechHandlers != null) {
 			/**Identification du fichier de configuration*/
 			URL url = OneWordInstruction.class.getResource("helloworld.config.xml");
@@ -104,32 +105,32 @@ public class SpeechEventManager extends BasicEventManager<StateListener> impleme
 			 
 			 /**On vérifie si le microphone est prêt à enregistrer*/
 			 if (!microphone.startRecording()) {
-			     System.out.println("Cannot start microphone.");
+			     g.drawString("Cannot start microphone.", 10, 20);
 			     recognizer.deallocate();
 			     System.exit(1);
 			 }
 			
-			 System.out.println("Say: ( Start )");
+			 g.drawString("Say: ( Start )", 10, 20);
 			 
 			 while (true) {
-			 System.out.println("Start speaking. Press Ctrl-C to quit.\n");
+			 g.drawString("Start speaking. Press Ctrl-C to quit.\n", 10, 20);
 
 			 Result result = recognizer.recognize();
 
 			 if (result != null) {
 			 resultText = result.getBestFinalResultNoFiller();
-			 System.out.println("You said: " + resultText + '\n');
+			 g.drawString("You said: " + resultText + '\n', 10, 20);
 			 
 			 /**On appelle la méthode correspondante à la méthode reçue*/
 			 if (resultText.compareTo("Start")!=0){
-				 System.out.println("Start"); 
+				 g.drawString("Start", 10, 20); 
 				 
 			 } else {
-				 System.out.println("répéter");
+				 g.drawString("répéter", 10, 20);
 			 	 }
 
 			 } else {
-			         System.out.println("I can't hear what you said.\n");
+			         g.drawString("I can't hear what you said.\n", 10, 20);
 			 		}
 			 }
 			 }
@@ -137,6 +138,12 @@ public class SpeechEventManager extends BasicEventManager<StateListener> impleme
 			for(final SpeechEventHandler handler : speechHandlers)
 			 handler.onSpeech(resultText);
 		}
+	public Graphics getG() {
+		return g;
+	}
+	public void setG(Graphics g) {
+		this.g = g;
+	}
 		
 		
 	}
