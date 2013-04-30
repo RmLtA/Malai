@@ -26,14 +26,13 @@ public class OneWordInstruction extends SpeechInteraction{
 
 	protected void initStateMachine() {
 		final TerminalState listened = new TerminalState("listened");
-	
+		
 		addState(listened);
-	
+		
 		new SpeechTransition(initState, listened) {
 			@Override
 			public void action() {
 				super.action();
-				setLastHIDUsed(this.hid);
 				OneWordInstruction.this.word = this.word;
 			}
 		};
