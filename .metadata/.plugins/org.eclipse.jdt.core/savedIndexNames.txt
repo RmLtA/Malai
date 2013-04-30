@@ -1,3 +1,0 @@
-INDEX VERSION 1.126+C:\Users\liantsoa\Documents\Malai\Malai\.metadata\.plugins\org.eclipse.jdt.core
-384128591.index
-2783143500.index
