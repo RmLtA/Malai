@@ -6,8 +6,7 @@ import org.malai.interaction.InitState;
 import org.malai.interaction.Interaction;
 import org.malai.stateMachine.ITransition;
 
-import edu.cmu.sphinx.recognizer.Recognizer.State;
-
+/*import edu.cmu.sphinx.recognizer.Recognizer.State;/*/
 
 public class SpeechInteraction extends Interaction implements SpeechEventHandler{
 	public SpeechInteraction(){
@@ -45,10 +44,10 @@ public class SpeechInteraction extends Interaction implements SpeechEventHandler
 		
 	}
 
-	@Override
-	public void onSpeechStateChanged(State status) {
+	
+	/*public void onSpeechStateChanged(State status) {
 		// TODO Auto-generated method stub
 		
-	}
+	}*/
 
 }
