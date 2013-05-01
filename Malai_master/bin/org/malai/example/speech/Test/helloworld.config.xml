@@ -95,8 +95,8 @@
     <component name="jsgfGrammar" type="edu.cmu.sphinx.jsgf.JSGFGrammar">
         <property name="dictionary" value="dictionary"/>
         <property name="grammarLocation"
-             value="resource:/org/malai/sphinx4/interaction/library/"/> /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-        <property name="grammarName" value="OneWordInstruction"/>
+             value="resource:/org/malai/example/speech/Test/"/> 
+        <property name="grammarName" value="SpeechInstruction"/>
 	<property name="logMath" value="logMath"/>
     </component>
 

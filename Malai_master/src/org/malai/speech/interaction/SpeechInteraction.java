@@ -1,12 +1,8 @@
 package org.malai.speech.interaction;
 
-
-
 import org.malai.interaction.InitState;
 import org.malai.interaction.Interaction;
 import org.malai.stateMachine.ITransition;
-
-/*import edu.cmu.sphinx.recognizer.Recognizer.State;/*/
 
 public class SpeechInteraction extends Interaction implements SpeechEventHandler{
 	public SpeechInteraction(){
@@ -43,11 +39,5 @@ public class SpeechInteraction extends Interaction implements SpeechEventHandler
 		// TODO Auto-generated method stub
 		
 	}
-
-	
-	/*public void onSpeechStateChanged(State status) {
-		// TODO Auto-generated method stub
-		
-	}*/
 
 }
