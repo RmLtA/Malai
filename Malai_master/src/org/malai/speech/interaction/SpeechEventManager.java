@@ -14,18 +14,43 @@ import edu.cmu.sphinx.recognizer.StateListener;
 import edu.cmu.sphinx.util.props.PropertyException;
 import edu.cmu.sphinx.util.props.PropertySheet;
 
+/**
+ * A speech event manager gathers speech events produces by the recognizer and transfers them handlers.<br>
+ * <br>
+ * This file is part of Malai.<br>
+ * Copyright (c) 2009-2013 Tom Demulier--Chevret, Juliette Gourlaouen, Maxime Lorant, Liantsoa Rasata-Manantena <br>
+ * <br>
+ * Malai is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation; either version 2 of the License, or (at your option) any later version.
+ * <br>
+ * Malai is distributed without any warranty; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.<br>
+ * <br>
+ * 2013-02-26<br>
+ * @author Tom Demulier--Chevret
+ * @author Juliette Gourlaouen
+ * @author Maxime Lorant
+ * @author Liantsoa Rasata-Manantena
+ * @since 0.2
+ */
 
 public class SpeechEventManager extends BasicEventManager<StateListener> implements StateListener{
 	private static final String PROP_DECODER = null;
 	private static final String PROP_MONITORS = null;
+	
+	/** A subset of the set 'handlers' corresponding to the Speech Handlers. */
 	private List<SpeechEventHandler> speechHandlers;
 
-
-	
+	/**
+	 * Create Speech Event Manager 
+	 */
 	public SpeechEventManager() {
 		super();
 		speechHandlers = null;
 	}
+	
 	@Override
 	public void detachForm(StateListener state) {
 		if(state!=null){
@@ -34,7 +59,6 @@ public class SpeechEventManager extends BasicEventManager<StateListener> impleme
 		
 	}
 	
-
 	@Override
 	public void attachTo(final StateListener state) {
 		if(state!=null){
