@@ -45,26 +45,26 @@ public class SpeechTest1 {
 		 		System.out.println("You said: " + resultText + '\n');
 		 
 		 		/**On appelle la méthode correspondante à la méthode reçue*/
-		 		if (resultText.compareTo("Start")==0){
+		 		if (resultText.compareTo("start")==0){
 		 			SpeechEventManager m = new SpeechEventManager();
 		 			m.onSpeechEvent(resultText);
-		 			System.out.println("Start"); 
+		 			System.out.println("1"); 
 		 			} 
-		 		if (resultText.compareTo("Stop")==0){
+		 		if (resultText.compareTo("stop")==0){
 		 			SpeechEventManager m = new SpeechEventManager();
 		 			m.onSpeechEvent(resultText);
-		 			System.out.println("Stop"); 
+		 			System.out.println("2"); 
 		 			} 
-		 		if (resultText.compareTo("Left")==0){
+		 		if (resultText.compareTo("left")==0){
 		 			SpeechEventManager m = new SpeechEventManager();
 		 			m.onSpeechEvent(resultText);
-		 			System.out.println("Left"); 
+		 			System.out.println("3"); 
 		 			} 
-		 		if (resultText.compareTo("Right")==0){
+		 		if (resultText.compareTo("right")==0){
 		 			SpeechEventManager m = new SpeechEventManager();
 		 			m.onSpeechEvent(resultText);
-		 			System.out.println("Right"); 
-		 			}		
+		 			System.out.println("4"); 
+		 			}	
 		 } else {
 		         System.out.println("I can't hear what you said.\n");
 		 		}

@@ -17,6 +17,7 @@ public class SpeechInteraction extends Interaction implements SpeechEventHandler
 
 	@Override
 	public void onSpeech(String word) {
+		System.out.println("reçu onSpeech 1");
 		if(!activated) return ;
 
 		boolean again = true;

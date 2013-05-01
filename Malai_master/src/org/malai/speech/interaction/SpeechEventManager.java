@@ -19,7 +19,7 @@ public class SpeechEventManager extends BasicEventManager<StateListener> impleme
 	private static final String PROP_DECODER = null;
 	private static final String PROP_MONITORS = null;
 	private List<SpeechEventHandler> speechHandlers;
-	private static String resultText;
+
 
 	
 	public SpeechEventManager() {
@@ -82,9 +82,11 @@ public class SpeechEventManager extends BasicEventManager<StateListener> impleme
 	}
 	
 	public void onSpeechEvent(String word){
+		System.out.println("reçu onSpeechEvent 1");
 		if(speechHandlers != null) {
 			for(final SpeechEventHandler handler : speechHandlers)
-			 handler.onSpeech(resultText);
+			 handler.onSpeech(word);
+			System.out.println("reçu onSpeechEvent 2"); /**problème*/
 		}	
 	}
 }
