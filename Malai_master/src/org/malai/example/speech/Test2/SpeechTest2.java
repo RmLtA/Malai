@@ -3,8 +3,6 @@ package org.malai.example.speech.Test2;
 import java.net.URL;
 
 import org.malai.speech.interaction.SpeechEventManager;
-import org.malai.speech.interaction.library.SpeechInstruction;
-
 
 import edu.cmu.sphinx.frontend.util.Microphone;
 import edu.cmu.sphinx.recognizer.Recognizer;
@@ -15,7 +13,7 @@ public class SpeechTest2 {
 
 	public static void main(String[] args) {
 		/**Identification du fichier de configuration*/
-		URL url = SpeechInstruction.class.getResource("hellongram.config.xml");
+		URL url = SpeechTest2.class.getResource("hellongram.config.xml");
 		
 		/**Chargement de la configuration*/
 		ConfigurationManager cm = new ConfigurationManager(url);
@@ -46,14 +44,18 @@ public class SpeechTest2 {
 		 		System.out.println("You said: " + resultText + '\n');
 		 
 		 		/**On appelle la méthode correspondante à la méthode reçue*/
-		 		if (resultText.compareTo("Start")!=0){
+		 		if (resultText.compareTo("the green one right in the middle")==0){
 		 			SpeechEventManager m = new SpeechEventManager();
 		 			m.onSpeechEvent(resultText);
-		 			System.out.println("Start"); 
-			 
-		 			} else {
-		 					System.out.println("répéter");
-		 					}
+		 			System.out.println("the green one right in the middle"); 
+		 		}
+		 		if (resultText.compareTo("the only one left on the left")==0){
+		 			SpeechEventManager m = new SpeechEventManager();
+		 			m.onSpeechEvent(resultText);
+		 			System.out.println("the only one left on the left"); 
+		 		}
+		 		
+
 		 } else {
 		         System.out.println("I can't hear what you said.\n");
 		 		}
@@ -66,8 +68,6 @@ public class SpeechTest2 {
     private static void printInstructions() {
         System.out.println("Sample sentences:\n" +
                 "the green one right in the middle\n" +
-                "the purple one on the lower right side\n" +
-                "the closest purple one on the far left side\n" +
                 "the only one left on the left\n\n" +
                 "Refer to the file hellongram.test for a complete list.\n");
     }
