@@ -1,0 +1,9 @@
+#JSGF V1.0;
+
+/**
+ * JSGF Grammar 
+ */
+
+grammar SpeechInstruction;
+
+public <greet> = ( Start | Stop | Left | Right );
