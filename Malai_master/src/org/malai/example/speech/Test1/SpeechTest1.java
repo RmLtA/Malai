@@ -1,4 +1,4 @@
-package org.malai.example.speech.Test;
+package org.malai.example.speech.Test1;
 
 import java.net.URL;
 

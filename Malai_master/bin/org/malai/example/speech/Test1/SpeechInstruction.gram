@@ -6,4 +6,4 @@
 
 grammar SpeechInstruction;
 
-public <greet> = ( Start | Stop | Left | Right );
+public <greet> = (Start | Stop | Left | Right);
