@@ -11,7 +11,6 @@ public class SpeechInstruction extends SpeechInteraction{
 
 	public SpeechInstruction() {
 		super();
-		System.out.println("Loading...");
 		initStateMachine();	
 	}
 
